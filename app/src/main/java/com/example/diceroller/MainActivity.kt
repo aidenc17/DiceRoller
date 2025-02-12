@@ -54,15 +54,11 @@ fun DiceRollerApp(modifier: Modifier = Modifier) {
         5 -> R.drawable.dice_5
         6 -> R.drawable.dice_6
         else -> R.drawable.dice_6
-
-
     }
 
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally
-
-
     ){
         Image(
             painter = painterResource(id = imageSource),
