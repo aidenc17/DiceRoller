@@ -19,6 +19,12 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.foundation.Image
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.res.painterResource
 import com.example.diceroller.ui.theme.DiceRollerTheme
 
 class MainActivity : ComponentActivity() {
@@ -39,11 +45,30 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun DiceRollerApp(modifier: Modifier = Modifier) {
+    var result by remember { mutableStateOf(1)}
+    val imageSource = when (result){
+        1 -> R.drawable.dice_1
+        2 -> R.drawable.dice_2
+        3 -> R.drawable.dice_3
+        4 -> R.drawable.dice_4
+        5 -> R.drawable.dice_5
+        6 -> R.drawable.dice_6
+        else -> R.drawable.dice_6
+
+
+    }
+
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally
+
+
     ){
-        Button(onClick = {}){
+        Image(
+            painter = painterResource(id = imageSource),
+            contentDescription = "$result"
+        )
+        Button(onClick = {result = (1 .. 6).random()}){
             Text("Roll", fontSize = 40.sp)
         }
     }
